@@ -1,2 +1,3 @@
 Requests==2.31.0
 TextBase==0.15
+textbase-client==0.1.4

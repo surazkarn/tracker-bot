@@ -1,9 +1,23 @@
 # Tracker Bot
 
-This bot is a tracker chatbot. You can track news, jobs opening and many more using it.
-Currently, it supports news tracking.
+Tracker Bot is a versatile chatbot that allows you to track news updates, job openings, and more. It currently supports news tracking.
 
-Certainly! Here are the instructions for cloning the repository and running the Tracker Bot:
+## Features
+
+- **News Tracking**: Get the latest news articles from various categories, including technology, business, entertainment, general, health, science, and sports.
+
+- **Job Openings**: Stay updated on job openings in your desired field.
+
+- **Customizable**: Tracker Bot is highly customizable and can be extended to support additional features and functionalities.
+
+## Live Deployed Version
+
+You can interact with the live deployed version of Tracker Bot at [https://bot.textbase.ai/surajkumarkarn10/tracker-bot](https://bot.textbase.ai/surajkumarkarn10/tracker-bot).
+
+
+## Installation
+
+To run Tracker Bot, follow these simple steps:
 
 1. **Clone the Repository:**
 
@@ -13,7 +27,15 @@ Certainly! Here are the instructions for cloning the repository and running the 
    git clone https://github.com/surazkarn/tracker-bot
    ```
 
-2. **Install Dependencies:**
+2. **Navigate to the project folder:**
+
+   ```bash
+   cd tracker-bot
+   ```
+
+3. **Replace the `NEWS_API_KEY` in the `main.py` file with your actual News API key from [News API](https://newsapi.org/).**
+
+4. **Install Dependencies:**
 
    Make sure you have Python and `pip` installed. Then, install the required dependencies using `pip`:
 
@@ -23,7 +45,7 @@ Certainly! Here are the instructions for cloning the repository and running the 
 
    This will install the `textbase-client` package and other necessary dependencies.
 
-3. **Run the Bot:**
+5. **Run the Bot:**
 
    Start the bot with the following command:
 
@@ -39,20 +61,24 @@ Certainly! Here are the instructions for cloning the repository and running the 
 
    Your Tracker Bot will start, and you can interact with it to get news updates or engage in conversations.
 
-4. **Usage:**
+## Usage
 
-   To get the latest news, type the following command when interacting with Your Bot:
+To get the latest news, type the following command when interacting with Your Bot:
 
-   ```
-   !news [category]
-   ```
+```
+!news [category]
+```
 
-   Replace `[category]` with the desired news category (e.g., technology, business, entertainment, general, health, science, sports).
+Replace `[category]` with the desired news category (e.g., technology, business, entertainment, general, health, science, sports).
 
-5. **Contributions:**
+For job openings, use a similar command (e.g., `!jobs [category]`) to fetch the latest job listings in your field.
 
-   Contributions to this Bot are welcome! If you have suggestions or want to improve its functionality, please open an issue or create a pull request on the GitHub repository.
+## Contributions
 
-- Now you can use and interact with the Tracker Bot on your local machine. Enjoy chatting with it and exploring news and other features!
+Contributions to this Bot are welcome! If you have suggestions or want to improve its functionality, please open an issue or create a pull request on the GitHub repository.
 
-*Happy chatting with Tracker Bot!*
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+Happy chatting with Tracker Bot!

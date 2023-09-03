@@ -2,7 +2,7 @@ import requests
 from textbase import bot, Message
 from typing import List
 
-# Replace 'YOUR_API_KEY' with your actual News API key
+# Replace 'NEWS_API_KEY' with your actual News API key
 NEWS_API_KEY = ""
 
 # NewsAPI URL for top headlines

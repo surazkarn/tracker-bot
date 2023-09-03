@@ -6,11 +6,14 @@ from typing import List
 NEWS_API_KEY = ""
 
 # NewsAPI URL for top headlines
-NEWS_API_URL = "https://newsapi.org/v2/top-headlines"
+NEWS_API_TOP_URL = "https://newsapi.org/v2/top-headlines"
+NEWS_API_EVERYTHING_URL = "https://newsapi.org/v2/everything"
+
 
 # System prompt for your bot
-SYSTEM_PROMPT = """You are chatting with a News and Current Affairs Bot. You can ask for news updates by category or simply chat about current events. 
-To get the latest news, type '!news [category]'. For example, '!news technology'.
+SYSTEM_PROMPT = """You are chatting with a Tracker Bot.
+To get the latest news, type '!news [category]'.
+For example, '!news technology'.
 """
 
 @bot()
@@ -63,7 +66,11 @@ def on_message(message_history: List[Message], state: dict = None):
                 },
                 {
                     "data_type": "STRING",
-                    "value": "To get the latest news, type '!news [category]'. For example, '!news technology'."
+                    "value": "To get the latest news, type '!news [category]'."
+                },
+                {
+                    "data_type": "STRING",
+                    "value": "Replace `[category]` with your desired news category (e.g., technology, business, entertainment, general, health, science, sports)."
                 }
             ],
             "state": state
@@ -113,14 +120,22 @@ def format_news_articles(articles):  # Add this function
 
     return formatted_articles
 
-def get_news(category):
+
+def get_news(query=None, category=None):
     params = {
         'apiKey': NEWS_API_KEY,
-        'category': category,
-        'pageSize': 5,  # Adjust the number of articles to fetch as needed
+        'pageSize': 5,  # Adjust the number of articles to fetch as needed,
         'language': 'en'
     }
-    response = requests.get(NEWS_API_URL, params=params)
+
+    if query:
+        params['q'] = query
+    elif category:
+        params['category'] = category
+    else:
+        return []
+
+    response = requests.get(NEWS_API_EVERYTHING_URL if query else NEWS_API_TOP_URL, params=params)
 
     if response.status_code == 200:
         data = response.json()

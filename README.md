@@ -33,7 +33,11 @@ To run Tracker Bot, follow these simple steps:
    cd tracker-bot
    ```
 
-3. **Replace the `NEWS_API_KEY` in the `main.py` file with your actual News API key from [News API](https://newsapi.org/).**
+3. ### Obtain News API Key
+
+To fetch news articles, Tracker Bot relies on the News API. You need to obtain a News API key from [News API](https://newsapi.org/). Once you have your API key, follow the steps below to set it up in Tracker Bot.
+
+- Replace the `NEWS_API_KEY` in the `main.py` file with your actual News API key from [News API](https://newsapi.org/).
 
 4. **Install Dependencies:**
 

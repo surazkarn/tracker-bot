@@ -1,12 +1,14 @@
 # Tracker Bot
 
-Tracker Bot is a versatile chatbot that allows you to track news updates, job openings, and more. It currently supports news tracking.
+Tracker Bot is a versatile chatbot that allows you to track news updates, job openings, and more. It currently supports news tracking and sentiment analysis.
 
 ## Features
 
 - **News Tracking**: Get the latest news articles from various categories, including technology, business, entertainment, general, health, science, and sports.
 
 - **Job Openings**: Stay updated on job openings in your desired field.
+
+- **Sentiment Analysis**: Tracker Bot performs sentiment analysis on news articles, providing insights into whether the news is positive, negative, or neutral.
 
 - **Customizable**: Tracker Bot is highly customizable and can be extended to support additional features and functionalities.
 

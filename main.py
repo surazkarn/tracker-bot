@@ -1,6 +1,10 @@
 import requests
 from textbase import bot, Message
 from typing import List
+import nltk
+nltk.download('vader_lexicon')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 
 # Replace 'NEWS_API_KEY' with your actual News API key
 NEWS_API_KEY = ""
@@ -11,9 +15,7 @@ NEWS_API_EVERYTHING_URL = "https://newsapi.org/v2/everything"
 
 
 # System prompt for your bot
-SYSTEM_PROMPT = """You are chatting with a Tracker Bot.
-To get the latest news, type '!news [category]'.
-For example, '!news technology'.
+SYSTEM_PROMPT = """Hello 👋 Type '!news [category]' (e.g., '!news technology') for clickable news links with sentiment labels: 'positive,' 'negative,' or 'neutral'.
 """
 
 @bot()
@@ -49,6 +51,10 @@ def on_message(message_history: List[Message], state: dict = None):
 
         # Fetch news articles from the chosen category
         news_articles = get_news(news_category)
+        
+        # Analyze sentiment for each article
+        for article in news_articles:
+            article['sentiment'] = analyze_sentiment(article['description'])  # Add this line
 
         # Generate a response with news articles
         if news_articles:
@@ -105,20 +111,22 @@ def on_message(message_history: List[Message], state: dict = None):
         "response": response
     }
 
-def format_news_articles(articles):  # Add this function
+def format_news_articles(articles):
     formatted_articles = []
     for index, article in enumerate(articles, start=1):
         title = article['title']
         description = article['description']
         link = article['url']
+        sentiment = article['sentiment']  # Add this line
 
         # Create a formatted string for each article
-        formatted_article = f"📌 [{title}]({link})\n\n"
+        formatted_article = f"📌 [{title}]({link}) 🔊Sentiment ➡ {sentiment}\n\n"
         formatted_article += f"{description}\n\n"
 
         formatted_articles.append(formatted_article)
 
     return formatted_articles
+
 
 
 def get_news(query=None, category=None):
@@ -143,3 +151,15 @@ def get_news(query=None, category=None):
         return articles
     else:
         return []
+
+def analyze_sentiment(article_text):
+    analyzer = SentimentIntensityAnalyzer()
+    sentiment_scores = analyzer.polarity_scores(article_text)
+    compound_score = sentiment_scores['compound']
+
+    if compound_score >= 0.05:
+        return 'positive'
+    elif compound_score <= -0.05:
+        return 'negative'
+    else:
+        return 'neutral'
